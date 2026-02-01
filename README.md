@@ -27,9 +27,17 @@ For a safe and stable experience, please perform these steps **BEFORE** running 
 
 ## 📦 Installation & Usage
 
-1. Open PowerShell as **Administrator**.
-2. Run `Deploy-Shell.ps1`.
-3. Confirm the system reboot when prompted.
+### 1. Get the files
+*   **Option A (Recommended):** [📥 Download Full Release (ZIP)](https://github.com) — includes Script, Instructions, and License.
+*   **Option B (Script only):** [📄 Download Deploy-Shell.ps1](https://github.com) — just the standalone script.
+*   **Source:** [🔍 View Source Code](Deploy-Shell.ps1) directly on GitHub.
+
+### 2. Execution
+1.  Open PowerShell as **Administrator**.
+2.  Navigate to the file location and run `Deploy-Shell.ps1`.
+3.  Confirm the system reboot when prompted.
+
+
 
 ---
 
