@@ -1,90 +1,40 @@
-# 🚀 Universal Shell Engine (USE) v1.0.1
+# Universal Shell Engine (USE) v1.0.2 "Legacy-Hybrid"
 
-### 🎮 Turn your Windows PC into a dedicated Gaming Console!
 
-**Universal Shell Engine (USE)** is a lightweight tool that replaces the boring Windows desktop with your favorite gaming interface (like Steam Big Picture). No icons, no taskbar, no distractions—just your games, right from the boot.
-
----
-
-## ✨ Why use this instead of "Auto-start"?
-
-Normally, Windows loads the entire Desktop (Explorer) before starting Steam. This wastes RAM and looks messy. 
-
-**USE does it differently:**
-*   **True Console Experience:** It "cuts out" the Windows Desktop. Your PC boots straight into Steam/Playnite.
-*   **More Resources for Games:** By not loading the Taskbar and Start Menu, you free up system resources.
-*   **Seamless Exit:** When you close Steam, the Windows Desktop (Explorer) automatically pops back up. It’s magic!
-*   **Multi-User Ready:** Give your kid a "Steam-only" account while keeping your "Admin" account for work. Each user gets their own dedicated shell!
----
-
-## 🎭 The "Multiverse" Feature: Infinite Shells
-
-The true power of **USE** lies in its absolute isolation. Since the injection happens at the user level (HKCU), your Windows becomes a multi-interface powerhouse:
-
-*   **Zero Interference:** Setting up a "Console Mode" for one user **does not affect** any other user. Your main Admin account stays untouched with its classic desktop and icons.
-*   **Infinite Customization:** You can create 10 different users, and each will have a unique experience:
-    *   *User 1:* Boots directly into **Steam** (Console Mode).
-    *   *User 2:* Boots into **Playnite** (Universal Game Hub).
-    *   *User 3:* Boots into **Kodi** (Home Theater PC).
-    *   *User 4:* Keeps the standard **Windows Desktop** for work.
-*   **Complete Privacy:** Every user has their own "Sandbox" folder in `%ProgramData%`. Logs, boot scripts, and settings never get mixed up.
-
-It’s like having multiple specialized computers inside one single box! 📦✨
+## Executive Summary
+**Universal Shell Engine (USE)** is a robust system utility designed to hot-swap the standard Windows Shell (`explorer.exe`) with any targeted executable. By re-engineering the user's session environment, USE transforms a standard Windows OS into a dedicated, high-performance kiosk, gaming console, or workstation without the overhead of the traditional desktop environment.
 
 ---
 
-## 🖥️ Compatibility: Will it run on my machine?
+## Core Technical Enhancements in v1.0.2
 
-One of the biggest strengths of **USE** is its "Legacy-Hybrid" engine. It’s designed to be nearly universal:
+### 🔍 Adaptive Tiered Discovery (ATD)
+Introduced an intelligent 3-stage binary resolution engine. The utility prioritizes high-speed lookups via **System Environment Variables** and **Registry App Paths** before optionally escalating to an exhaustive recursive volume scan. This prevents unnecessary disk I/O and provides immediate feedback.
 
-*   **Windows Versions:** Fully supports **Windows 11, 10, 8.1, 8**, and even **Windows 7** (SP1 with PowerShell 5.1).
-*   **Hardware:** Works on standard **Intel/AMD** PCs and laptops.
-*   **ARM Support:** Fully compatible with **ARM-based devices** (like Surface Pro X or new Snapdragon laptops). Perfect for Windows-based handhelds!
-*   **Any Drive:** It doesn't matter if your games are on `C:`, `D:`, or an external SSD—the engine will track them down.
-*   **Any App:** While optimized for **Steam**, it works perfectly with **Playnite**, **RetroArch**, **Kodi**, or any other full-screen application.
+### ⚙️ Legacy-Hybrid Core Compatibility
+Engineered for absolute versatility, the core logic maintains full functional parity across **Windows 7 (PowerShell 2.0)**, **Windows 10**, and **Windows 11 (including native ARM64 support)**. By utilizing low-level .NET calls instead of version-specific cmdlets, the engine ensures stability across a decade of Windows builds.
 
----
+### 🖥️ Non-Blocking UI & Responsive UX
+The integration of a WinForms-based GUI features asynchronous-like behavior using system event processing. This prevents the interface from hanging during deep-scan operations on legacy HDD-based systems, providing a smooth user experience even under heavy load.
 
-## 🛠 Pro Features (Inside the Engine)
+### ⌨️ Automatic Input Service Provisioning
+The deployment engine automatically injects `CTFMON.exe` initialization into the boot sequence. This critical fix ensures that text input services, IME, and hardware keyboard mappings remain functional within the target application when the standard shell is absent.
 
-*   **SID Isolation:** Uses unique system IDs to keep user settings separated. No more "Wait, whose login is this?" issues.
-*   **Legacy-Hybrid:** Works on everything from old-school **Windows 7** to the latest **Windows 11**.
-*   **Smart Search:** Found Steam on your `D:` or `E:` drive? No problem. The engine will find it automatically.
-*   **Cyrillic Support:** Fixed all those "weird characters" bugs in usernames. It just works.
-
----
-## 🔒 Pro Security Tip: "Set and Forget"
-Once the script is deployed, you can **downgrade your account to a "Standard User"**. 
-
-*   **Child-Proof:** Perfect for kids! They can play their games, but they won't be able to mess up system settings, delete important files, or install unwanted software.
-*   **Bulletproof Console:** Since our engine lives in the protected `%ProgramData%` folder, a standard user can't break the boot logic. It’s a "hardened" gaming station.
-*   **Total Peace of Mind:** Your OS stays clean and stable while the user enjoys a pure console experience.
+### 🛡️ SID-Isolated Sandboxing
+Deployment paths are dynamically generated using the **Security Identifier (SID)** of the current user. This allows for absolute isolation on multi-user systems, preventing configuration leakage between different user accounts on the same machine.
 
 ---
 
-## 🚀 Quick Start Guide
+## Technical Specifications
+*   **Target Architectures:** x86, x64, ARM64.
+*   **Environment:** PowerShell 2.0 - 5.1+ / .NET Framework (WinForms).
+*   **Redirection Method:** User-Level Registry Redirection (HKCU).
+*   **Safety Mechanism:** Integrated Rollback Engine & Desktop Recovery Scripts.
 
-1.  **Download** the `USE_v1.0.1.ps1` script.
-2.  **Right-click** and select **"Run with PowerShell"**.
-3.  **Approve Admin rights** (the engine needs them to set up the "sandbox" for you).
-4.  **Follow the prompts.** The script will find your Steam and set everything up.
-5.  **Reboot** and enjoy your new console!
-
----
-
-## 🛡 Failsafe (Don't Panic!)
-
-What if you want your regular Windows back? 
-Easy. We put a **"Restore_Explorer"** script right on your Desktop. Run it, and your PC is back to normal. No system files are ever harmed!
+## Primary Deployment Scenarios
+1.  **Gaming Handhelds & HTPCs:** Boot directly into Steam Big Picture, Playnite, or Kodi with zero desktop interference.
+2.  **Kiosk & Digital Signage:** Lock down public-facing terminals to a single application with automated recovery.
+3.  **Performance Tuning:** Reduce background process overhead by bypassing the Explorer shell environment entirely.
 
 ---
-
-## 📂 Where are my logs?
-If you're a pro and want to see what's happening under the hood, check:
-`%ProgramData%\ShellEngine\<Your_ID>\<App_Name>\`
-
----
-## 📜 License
-MIT License. Free to use, tweak, and share.
-
-> **Surgical Precision. Gaming Focus. Made for Players.**
+> **Disclaimer:** *USE v1.0.2 represents the pinnacle of shell redirection stability, balancing legacy compatibility with modern hardware awareness. Use with administrative privileges.*
